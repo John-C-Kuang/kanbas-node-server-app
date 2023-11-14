@@ -2,7 +2,7 @@ import db from "../Database/index.js";
 
 function ModuleRoutes(app) {
 
-  app.put("/api/modules/:mid", (req, res) => {
+  app.put("/modules/:mid", (req, res) => {
     const { mid } = req.params;
     const moduleIndex = db.modules.findIndex(
         (m) => m._id === mid);
@@ -14,14 +14,14 @@ function ModuleRoutes(app) {
   });
 
 
-  app.delete("/api/modules/:mid", (req, res) => {
+  app.delete("/modules/:mid", (req, res) => {
     const { mid } = req.params;
     db.modules = db.modules.filter((m) => m._id !== mid);
     res.sendStatus(200);
   });
 
 
-  app.post("/api/courses/:cid/modules", (req, res) => {
+  app.post("/courses/:cid/modules", (req, res) => {
     const { cid } = req.params;
     const newModule = {
       ...req.body,
@@ -33,7 +33,7 @@ function ModuleRoutes(app) {
   });
 
 
-  app.get("/api/courses/:cid/modules", (req, res) => {
+  app.get("/courses/:cid/modules", (req, res) => {
     const { cid } = req.params;
     const modules = db.modules
     .filter((m) => m.course === cid);
