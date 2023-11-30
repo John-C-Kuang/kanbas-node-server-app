@@ -1,4 +1,5 @@
 import express from "express"
+import session from "express-session";
 import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -20,8 +21,27 @@ app.use(
     })
 );
 
+const sessionOptions = {
+  secret: "any string",
+  resave: false,
+  saveUninitialized: false,
+};
 
-app.use(cors());
+if (process.env.NODE_ENV !== "development") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+  };
+}
+
+const CONNECTION_STRING =
+    process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0.1:27017/kanbas'
+
+mongoose.connect(CONNECTION_STRING);
+
+
+app.use(session(sessionOptions));
 app.use(express.json());
 
 AssignmentsRoutes(app)
