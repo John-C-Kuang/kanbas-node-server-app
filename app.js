@@ -38,11 +38,6 @@ const CONNECTION_STRING =
 
 mongoose.connect(CONNECTION_STRING);
 
-console.log("VERIFY - ORIGIN")
-console.log(process.env.FRONTEND_URL)
-console.log("VERIFY - MONGO CRED")
-console.log(process.env.DB_CONNECTION_STRING)
-
 app.use(session(sessionOptions));
 app.use(express.json());
 
