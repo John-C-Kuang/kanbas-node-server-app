@@ -42,7 +42,7 @@ console.log("VERIFY - ORIGIN")
 console.log("VERIFY - ORIGIN")
 
 app.use(session(sessionOptions));
-app.use(process.env.FRONTEND_URL);
+app.use(express.json());
 
 AssignmentsRoutes(app)
 ModuleRoutes(app)
