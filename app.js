@@ -38,10 +38,11 @@ const CONNECTION_STRING =
 
 mongoose.connect(CONNECTION_STRING);
 
+console.log("VERIFY - ORIGIN")
+console.log("VERIFY - ORIGIN")
 
 app.use(session(sessionOptions));
-app.use(express.json());
-app.use(cors());
+app.use(process.env.FRONTEND_URL);
 
 AssignmentsRoutes(app)
 ModuleRoutes(app)
