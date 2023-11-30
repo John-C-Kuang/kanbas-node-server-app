@@ -41,6 +41,7 @@ mongoose.connect(CONNECTION_STRING);
 
 app.use(session(sessionOptions));
 app.use(express.json());
+app.use(cors());
 
 AssignmentsRoutes(app)
 ModuleRoutes(app)
